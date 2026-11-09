@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yiersan Chinese — CMS Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ruby:#A71920;--ruby2:#86131a;--cream:#FEFCDA;--ink:#20242b;--muted:#737985;--line:#e9e6e1;--bg:#f7f7f5;--white:#fff;--teal:#168c83;--shadow:0 12px 35px #25252512}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.layout{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:258px;background:#fff;border-right:1px solid var(--line);padding:25px 17px;display:flex;flex-direction:column;z-index:3}.brand{display:flex;gap:12px;align-items:center;padding:4px 8px 27px;border-bottom:1px solid var(--line)}.brandmark{width:42px;height:42px;border-radius:13px;background:var(--ruby);color:#fff;display:grid;place-items:center;font-weight:700;font-size:19px}.brand b{display:block;font-size:15px;letter-spacing:.4px}.brand small{color:var(--muted);font-size:10px;letter-spacing:1.6px}.navlabel{font-size:10px;color:#a1a4aa;letter-spacing:1.6px;font-weight:700;padding:25px 10px 9px}.nav button{width:100%;border:0;background:transparent;text-align:left;padding:11px 12px;border-radius:9px;color:#59606b;font-size:13px;margin:2px 0;display:flex;align-items:center;gap:12px}.nav button:hover,.nav button.active{background:#f9eeee;color:var(--ruby);font-weight:700}.nav .ico{width:19px;text-align:center;font-size:16px}.sidebottom{margin-top:auto;border-top:1px solid var(--line);padding:15px 8px 0;color:var(--muted);font-size:11px;line-height:1.7}.main{margin-left:258px;min-height:100vh}.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:2}.crumb{font-size:13px;color:var(--muted)}.crumb strong{color:var(--ink)}.topright{display:flex;align-items:center;gap:13px}.adminpill{background:#f8eeee;color:var(--ruby);padding:8px 12px;border-radius:20px;font-size:11px;font-weight:700}.content{padding:34px;max-width:1450px;margin:auto}.eyebrow{color:var(--ruby);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}.heading{font:700 30px 'Playfair Display',serif;margin:8px 0 6px}.sub{color:var(--muted);font-size:13px;margin:0 0 26px}.hero{background:linear-gradient(115deg,#7f1119,#b51e27 70%,#ca5552);color:#fff;border-radius:17px;padding:28px 30px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow);margin-bottom:22px}.hero h2{font:600 24px 'Playfair Display',serif;margin:0 0 8px}.hero p{margin:0;color:#f7dddd;font-size:13px}.hero-tag{font-size:11px;border:1px solid #ffffff55;padding:9px 13px;border-radius:20px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:22px}.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 4px 15px #00000004}.stat{padding:19px}.stat .label{font-size:11px;color:var(--muted)}.stat .num{font-size:25px;font-weight:700;margin-top:9px}.stat .hint{font-size:10px;color:var(--teal);margin-top:5px}.panel{padding:22px;margin-bottom:18px}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.panel h3{font-size:15px;margin:0}.muted{color:var(--muted);font-size:12px}.quickgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.quick{border:1px solid var(--line);border-radius:11px;padding:16px;text-align:left;background:#fff}.quick:hover{border-color:#d9a1a3;background:#fffafa}.quick strong{display:block;font-size:13px;margin:8px 0 4px}.quick span{font-size:11px;color:var(--muted)}.btn{border:0;border-radius:8px;padding:10px 15px;font-size:12px;font-weight:700}.primary{background:var(--ruby);color:#fff}.primary:hover{background:var(--ruby2)}.secondary{background:#f4f4f2;color:#454b54;border:1px solid var(--line)}.danger{background:#fff0f0;color:#b4232a;border:1px solid #f4d0d0}.toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.field{border:1px solid #dedfe2;border-radius:8px;padding:10px 12px;background:#fff;color:var(--ink);font-size:12px;min-width:180px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#faf9f7;color:#777e87;font-size:10px;text-transform:uppercase;letter-spacing:.8px}tr:last-child td{border-bottom:0}.empty{text-align:center;padding:35px;color:var(--muted)}.notice{background:#fff9e6;border:1px solid #f0e2a8;padding:13px 15px;border-radius:9px;font-size:12px;line-height:1.6;color:#6c5a20;margin-bottom:18px}.loginwrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at top right,#f5e5e3,transparent 35%),var(--bg)}.login{width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px;box-shadow:var(--shadow)}.login h1{font:700 27px 'Playfair Display',serif;margin:18px 0 7px}.login p{font-size:12px;color:var(--muted);line-height:1.6}.login label,.modal label{display:block;font-size:11px;font-weight:700;margin:15px 0 6px}.login input,.modal input,.modal textarea{width:100%;padding:12px;border:1px solid #dedfe2;border-radius:8px;font-size:13px}.login .btn{width:100%;margin-top:18px}.error{color:#b4232a;font-size:12px;margin-top:12px}.modalback{position:fixed;inset:0;background:#17191f77;display:none;place-items:center;padding:20px;z-index:10}.modal{background:#fff;border-radius:15px;padding:24px;width:min(680px,100%);max-height:90vh;overflow:auto;box-shadow:0 20px 60px #0003}.modal textarea{min-height:260px;font-family:ui-monospace,monospace;font-size:12px}.modalfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}.hidden{display:none!important}.mobilehead{display:none}
+@media(max-width:900px){.sidebar{width:220px}.main{margin-left:220px}.stats{grid-template-columns:repeat(2,1fr)}.quickgrid{grid-template-columns:repeat(2,1fr)}.content{padding:22px}}
+@media(max-width:650px){.sidebar{position:static;width:100%;height:auto;padding:12px}.brand{padding:4px 5px 12px}.nav{display:flex;overflow:auto;gap:4px}.navlabel,.sidebottom{display:none}.nav button{white-space:nowrap;width:auto;padding:9px}.main{margin:0}.topbar{height:55px;padding:0 16px}.content{padding:18px}.stats{grid-template-columns:repeat(2,1fr)}.hero{padding:21px;display:block}.hero-tag{display:inline-block;margin-top:15px}.quickgrid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="loginScreen" class="loginwrap">
+ <div class="login">
+  <div class="brand" style="border:0;padding:0"><div class="brandmark">一</div><div><b>YIERSAN CHINESE</b><small>LEARN • PRACTICE • GROW</small></div></div>
+  <h1>CMS Admin</h1><p>Đăng nhập bằng tài khoản quản trị Yiersan để quản lý nội dung học tập.</p>
+  <label>Email</label><input id="email" type="email" placeholder="Email quản trị">
+  <label>Mật khẩu</label><input id="password" type="password" placeholder="Mật khẩu">
+  <button class="btn primary" id="loginBtn">Đăng nhập quản trị</button>
+  <div id="loginError" class="error"></div>
+  <p style="margin-top:18px">Chưa cấu hình kết nối? Hãy điền Project URL và anon key trong phần cấu hình ở cuối file <b>admin.html</b>.</p>
+ </div>
+</div>
+<div id="app" class="layout hidden">
+ <aside class="sidebar">
+  <div class="brand"><div class="brandmark">一</div><div><b>YIERSAN CHINESE</b><small>CMS • ADMIN</small></div></div>
+  <div class="navlabel">WORKSPACE</div>
+  <nav class="nav" id="nav">
+   <button class="active" data-page="dashboard"><span class="ico">▦</span>Tổng quan</button>
+   <div class="navlabel">HỌC LIỆU</div>
+   <button data-table="courses"><span class="ico">▤</span>Khóa học HSK</button>
+   <button data-table="lessons"><span class="ico">▣</span>Bài học</button>
+   <button data-table="vocabulary"><span class="ico">文</span>Từ vựng</button>
+   <button data-table="sentence_patterns"><span class="ico">≋</span>Mẫu câu</button>
+   <button data-table="grammar_points"><span class="ico">✎</span>Ngữ pháp</button>
+   <button data-table="dialogues"><span class="ico">☷</span>Hội thoại</button>
+   <div class="navlabel">KIỂM TRA & HỌC VIÊN</div>
+   <button data-table="exercises"><span class="ico">✓</span>Bài tập</button>
+   <button data-table="exercise_questions"><span class="ico">？</span>Câu hỏi</button>
+   <button data-table="exercise_answers"><span class="ico">≡</span>Đáp án</button>
+   <button data-table="profiles"><span class="ico">♙</span>Hồ sơ học viên</button>
+  </nav>
+  <div class="sidebottom">Yiersan Chinese CMS<br>Premium workspace · v1.0</div>
+ </aside>
+ <main class="main">
+  <header class="topbar"><div class="crumb">Yiersan Chinese <span style="padding:0 8px">/</span><strong id="crumb">Tổng quan</strong></div><div class="topright"><span class="adminpill">● ADMIN</span><button class="btn secondary" id="logoutBtn">Đăng xuất</button></div></header>
+  <section class="content" id="dashboardPage">
+   <div class="eyebrow">YIERSAN LEARNING MANAGEMENT</div><h1 class="heading">Trung tâm điều hành</h1><p class="sub">Quản lý học liệu và cấu trúc chương trình Yiersan Chinese tại một nơi.</p>
+   <div class="hero"><div><h2>Học đúng lộ trình. Tiến bộ vững vàng.</h2><p>Không gian quản trị nội dung học tập HSK1–HSK6 của Yiersan.</p></div><span class="hero-tag">PREMIUM CONTENT STUDIO</span></div>
+   <div class="stats">
+    <div class="stat"><div class="label">KHÓA HỌC</div><div class="num" id="countCourses">—</div><div class="hint">Dữ liệu từ Supabase</div></div>
+    <div class="stat"><div class="label">BÀI HỌC</div><div class="num" id="countLessons">—</div><div class="hint">Dữ liệu từ Supabase</div></div>
+    <div class="stat"><div class="label">TỪ VỰNG</div><div class="num" id="countVocabulary">—</div><div class="hint">Dữ liệu từ Supabase</div></div>
+    <div class="stat"><div class="label">HỒ SƠ</div><div class="num" id="countProfiles">—</div><div class="hint">Dữ liệu từ Supabase</div></div>
+   </div>
+   <div class="panel"><div class="panelhead"><h3>Truy cập nhanh</h3><span class="muted">Chọn một khu vực để quản lý</span></div><div class="quickgrid">
+    <button class="quick" data-goto="courses">📚<strong>Khóa học HSK</strong><span>Quản lý cấp độ và chương trình</span></button>
+    <button class="quick" data-goto="lessons">🗂️<strong>Bài học</strong><span>Danh sách và nội dung bài học</span></button>
+    <button class="quick" data-goto="vocabulary">文<strong>Từ vựng</strong><span>Hán tự, pinyin và nghĩa</span></button>
+    <button class="quick" data-goto="grammar_points">✎<strong>Ngữ pháp</strong><span>Điểm ngữ pháp và giải thích</span></button>
+    <button class="quick" data-goto="dialogues">☷<strong>Hội thoại</strong><span>Đoạn hội thoại theo bài</span></button>
+    <button class="quick" data-goto="exercises">✓<strong>Bài tập</strong><span>Hoạt động luyện tập</span></button>
+   </div></div>
+   <div class="notice"><b>Lưu ý:</b> CMS này kết nối trực tiếp với cơ sở dữ liệu Supabase. Chỉ tài khoản có quyền <b>admin</b> mới được vào. Khi thêm hoặc sửa dữ liệu, hãy giữ đúng tên cột và định dạng JSON của bảng.</div>
+  </section>
+  <section class="content hidden" id="tablePage">
+   <div class="eyebrow">CONTENT MANAGEMENT</div><h1 class="heading" id="tableTitle">Quản lý dữ liệu</h1><p class="sub" id="tableDesc">Thêm, chỉnh sửa và quản lý nội dung.</p>
+   <div class="panel">
+    <div class="panelhead"><div><h3 id="tableName">Dữ liệu</h3><span class="muted" id="rowCount">Đang tải...</span></div><div class="toolbar"><input class="field" id="searchInput" placeholder="Tìm trong dữ liệu..."><button class="btn secondary" id="refreshBtn">↻ Làm mới</button><button class="btn primary" id="addBtn">＋ Thêm mới</button></div></div>
+    <div class="notice" id="tableNotice">Mỗi bản ghi được hiển thị theo dữ liệu thực tế trong Supabase. Khi chỉnh sửa, CMS mở dữ liệu dạng JSON để tránh tự ý làm sai cấu trúc cột.</div>
+    <div class="tablewrap"><table><thead id="thead"></thead><tbody id="tbody"><tr><td class="empty">Chọn một mục ở thanh bên.</td></tr></tbody></table></div>
+   </div>
+  </section>
+ </main>
+</div>
+<div class="modalback" id="editorModal"><div class="modal"><div class="panelhead"><h3 id="modalTitle">Thêm dữ liệu</h3><button class="btn secondary" id="closeModal">Đóng</button></div><p class="muted">Nhập dữ liệu theo định dạng JSON. Không tự thay đổi tên cột của bảng.</p><textarea id="jsonInput" spellcheck="false"></textarea><div id="modalError" class="error"></div><div class="modalfoot"><button class="btn secondary" id="cancelModal">Hủy</button><button class="btn primary" id="saveRecord">Lưu dữ liệu</button></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ====== YIERSAN CONFIGURATION: replace these two values with your Supabase Project URL and anon/public key ======
+const SUPABASE_URL = "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE";
+const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_PUBLIC_KEY_HERE";
+// ==============================================================================================================
+const TABLES = {
+ courses:"Khóa học HSK", lessons:"Bài học", vocabulary:"Từ vựng",
+ sentence_patterns:"Mẫu câu", grammar_points:"Ngữ pháp", dialogues:"Hội thoại",
+ exercises:"Bài tập", exercise_questions:"Câu hỏi bài tập",
+ exercise_answers:"Đáp án bài tập", profiles:"Hồ sơ học viên"
+};
+let sb=null,currentTable=null,rows=[],editingId=null,columns=[];
+const $=id=>document.getElementById(id);
+function showError(msg){$("loginError").textContent=msg}
+function isConfigured(){return SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("PASTE_")&&SUPABASE_ANON_KEY.length>30&&!SUPABASE_ANON_KEY.includes("PASTE_")}
+async function init(){
+ if(!isConfigured()){showError("Chưa cấu hình Supabase. Hãy thay Project URL và anon key trong phần CONFIGURATION ở cuối file admin.html.");return}
+ sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+ const {data:{session}}=await sb.auth.getSession();if(session)await enterApp();
+}
+async function enterApp(){
+ const {data:{user},error}=await sb.auth.getUser();if(error||!user){$("loginScreen").classList.remove("hidden");$("app").classList.add("hidden");return}
+ const {data:profile,error:pe}=await sb.from("profiles").select("role,full_name").eq("id",user.id).maybeSingle();
+ if(pe||!profile||profile.role!=="admin"){await sb.auth.signOut();showError("Tài khoản chưa có quyền admin trong bảng profiles. Hãy kiểm tra role = admin.");return}
+ $("loginScreen").classList.add("hidden");$("app").classList.remove("hidden");$("adminName");loadCounts();
+}
+$("loginBtn").onclick=async()=>{showError("");if(!isConfigured()){init();return}const {error}=await sb.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});if(error){showError(error.message);return}await enterApp()};
+$("logoutBtn").onclick=async()=>{await sb.auth.signOut();$("app").classList.add("hidden");$("loginScreen").classList.remove("hidden")};
+async function loadCounts(){for(const [table,id] of [["courses","countCourses"],["lessons","countLessons"],["vocabulary","countVocabulary"],["profiles","countProfiles"]]){const {count,error}=await sb.from(table).select("*",{count:"exact",head:true});$(id).textContent=error?"—":count}}
+function openPage(table){currentTable=table;$("dashboardPage").classList.add("hidden");$("tablePage").classList.remove("hidden");$("crumb").textContent=TABLES[table]||table;$("tableTitle").textContent=TABLES[table]||table;$("tableName").textContent=table;$("tableDesc").textContent="Quản lý bản ghi trong bảng "+table+" của cơ sở dữ liệu Yiersan Chinese.";$("searchInput").value="";loadTable()}
+function dashboard(){$("dashboardPage").classList.remove("hidden");$("tablePage").classList.add("hidden");$("crumb").textContent="Tổng quan";currentTable=null}
+$("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");if(b.dataset.table)openPage(b.dataset.table);else dashboard()});
+document.querySelectorAll("[data-goto]").forEach(b=>b.onclick=()=>{const t=b.dataset.goto;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.table===t));openPage(t)});
+$("refreshBtn").onclick=loadTable;
+$("searchInput").oninput=renderTable;
+function display(v){if(v===null||v===undefined)return "—";if(typeof v==="object")return JSON.stringify(v);return String(v)}
+async function loadTable(){if(!currentTable)return;$("tbody").innerHTML='<tr><td class="empty">Đang tải dữ liệu...</td></tr>';const {data,error}=await sb.from(currentTable).select("*").limit(200);if(error){$("tbody").innerHTML='<tr><td class="empty">Không tải được: '+escapeHtml(error.message)+'</td></tr>';$("rowCount").textContent="Lỗi tải dữ liệu";return}rows=data||[];columns=rows.length?Object.keys(rows[0]):[];$("rowCount").textContent=rows.length+" bản ghi (tối đa 200)";renderTable()}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderTable(){const q=$("searchInput").value.toLowerCase();const filtered=rows.filter(r=>JSON.stringify(r).toLowerCase().includes(q));const cols=columns.length?columns:(rows[0]?Object.keys(rows[0]):[]);$("thead").innerHTML="<tr>"+cols.slice(0,6).map(c=>"<th>"+escapeHtml(c)+"</th>").join("")+"<th>Thao tác</th></tr>";if(!filtered.length){$("tbody").innerHTML='<tr><td class="empty" colspan="8">Chưa có dữ liệu. Bạn có thể nhấn “Thêm mới”.</td></tr>';return}
+ $("tbody").innerHTML=filtered.map((r)=>{const key=r.id??r.user_id??r.email??null;return "<tr>"+cols.slice(0,6).map(c=>"<td title='"+escapeHtml(display(r[c]))+"'>"+escapeHtml(display(r[c]).slice(0,75))+"</td>").join("")+"<td><button class='btn secondary edit' data-key='"+escapeHtml(String(key??""))+"'>Sửa</button> <button class='btn danger delete' data-key='"+escapeHtml(String(key??""))+"'>Xóa</button></td></tr>"}).join("");
+ $("tbody").querySelectorAll(".edit").forEach(b=>b.onclick=()=>editRecord(b.dataset.key));$("tbody").querySelectorAll(".delete").forEach(b=>b.onclick=()=>deleteRecord(b.dataset.key))}
+function openEditor(title,obj){$("modalTitle").textContent=title;$("jsonInput").value=obj?JSON.stringify(obj,null,2):JSON.stringify({},null,2);$("modalError").textContent="";$("editorModal").style.display="grid"}
+function closeEditor(){$("editorModal").style.display="none"}
+$("closeModal").onclick=$("cancelModal").onclick=closeEditor;
+$("addBtn").onclick=()=>{editingId=null;openEditor("Thêm bản ghi mới",null)};
+function editRecord(key){const obj=rows.find(r=>String(r.id??r.user_id??r.email??"")===String(key));if(!obj)return;editingId=key;openEditor("Chỉnh sửa bản ghi",obj)}
+$("saveRecord").onclick=async()=>{let obj;try{obj=JSON.parse($("jsonInput").value)}catch(e){$("modalError").textContent="JSON chưa đúng định dạng: "+e.message;return}
+ if(!obj||Array.isArray(obj)||typeof obj!=="object"){$("modalError").textContent="Vui lòng nhập một JSON object.";return}
+ let result;if(editingId!==null){const keycol=rows.find(r=>String(r.id??r.user_id??r.email??"")===String(editingId));const col=keycol?.id!==undefined?"id":keycol?.user_id!==undefined?"user_id":"email";const {id,user_id,email,...updates}=obj;result=await sb.from(currentTable).update(updates).eq(col,editingId)}else{result=await sb.from(currentTable).insert(obj)}
+ if(result.error){$("modalError").textContent=result.error.message;return}closeEditor();await loadTable();loadCounts()};
+async function deleteRecord(key){if(!confirm("Bạn chắc chắn muốn xóa bản ghi này? Thao tác này không thể hoàn tác."))return;const row=rows.find(r=>String(r.id??r.user_id??r.email??"")===String(key));if(!row)return;const col=row.id!==undefined?"id":row.user_id!==undefined?"user_id":"email";const {error}=await sb.from(currentTable).delete().eq(col,key);if(error){alert("Không xóa được: "+error.message);return}await loadTable();loadCounts()}
+init();
+</script>
+</body></html>
