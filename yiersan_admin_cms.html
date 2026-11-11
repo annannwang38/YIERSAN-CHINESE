@@ -266,19 +266,21 @@ if(profile.role!=="admin"){
 
 }
 
-$("loginBtn").onclick=async()=>{showError("");if(!isConfigured()){
 // ===== BIÊN SOẠN 10 MỤC BÀI HỌC =====
 const LESSON_SECTIONS=[
  ['warmup','Khởi động & Ôn tập bài cũ'],['introduction','Dẫn nhập chủ đề'],['vocabulary','Từ vựng mới'],['sentence_patterns','Mẫu câu'],['grammar','Ngữ pháp & Cấu trúc câu'],['skills','Phát triển kỹ năng / Nghe hội thoại'],['practice_games','Luyện tập / Trò chơi'],['hsk_practice','Luyện tập dạng đề HSK'],['homework','Bài tập về nhà'],['extension','Mở rộng']
 ];
 let lcSections=[],lcActiveKey='warmup';
-async function loadLessonContentCourses(){
+window.loadLessonContentCourses = async function(){
  const sel=$("lcCourse");sel.innerHTML='<option value="">Đang tải khóa học...</option>';
- const {data,error}=await sb.from('courses').select('*');
- if(error){$("lcNotice").textContent='Không tải được khóa học: '+error.message;return;}
+ $("lcNotice").textContent='Đang tải danh sách khóa học...';
+ try {
+ const {data,error}=await sb.from('courses').select('*').order('id');
+ if(error){sel.innerHTML='<option value="">Không tải được khóa học</option>';$("lcNotice").textContent='Không tải được khóa học: '+error.message;return;}
  sel.innerHTML='<option value="">Chọn khóa học HSK</option>';
  (data||[]).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name||c.title||c.course_name||c.level_name||c.code||c.level||'Khóa học';sel.appendChild(o)});
  $("lcNotice").textContent='Đã tải '+(data||[]).length+' khóa học. Hãy chọn khóa học rồi chọn bài học.';
+ } catch(e) { sel.innerHTML='<option value="">Lỗi tải khóa học</option>'; $("lcNotice").textContent='Lỗi kết nối khi tải khóa học: '+(e.message||e); }
 }
 $("lcCourse").addEventListener('change',async()=>{
  const id=$("lcCourse").value,sel=$("lcLesson");sel.disabled=!id;sel.innerHTML='<option value="">'+(id?'Đang tải bài học...':'Chọn bài học')+'</option>';$("lcWorkspace").classList.add('hidden');if(!id)return;
@@ -288,7 +290,7 @@ $("lcCourse").addEventListener('change',async()=>{
  $("lcNotice").textContent='Có '+(data||[]).length+' bài học. Chọn bài học để biên soạn.';
 });
 $("lcLesson").addEventListener('change',loadLessonSections);
-$("lcRefresh").onclick=()=>{if($("lcCourse").value){$("lcCourse").dispatchEvent(new Event('change'))}else loadLessonContentCourses()};
+$("lcRefresh").onclick=()=>{if($("lcCourse").value){$("lcCourse").dispatchEvent(new Event('change'))}else window.loadLessonContentCourses()};
 async function loadLessonSections(){
  const lessonId=$("lcLesson").value;if(!lessonId){$("lcWorkspace").classList.add('hidden');return;}
  const {data,error}=await sb.from('lesson_sections').select('*').eq('lesson_id',lessonId).order('sort_order');
@@ -307,7 +309,8 @@ async function saveLessonSection(publish){
 $("lcSaveDraft").onclick=()=>saveLessonSection(false);
 $("lcPublish").onclick=()=>saveLessonSection(true);
 
-init();return}const {error}=await sb.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});if(error){showError(error.message);return}await enterApp()};
+
+$("loginBtn").onclick=async()=>{showError("");if(!isConfigured()){init();return}const {error}=await sb.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});if(error){showError(error.message);return}await enterApp()};
 
 $("logoutBtn").onclick=async()=>{await sb.auth.signOut();$("app").classList.add("hidden");$("loginScreen").classList.remove("hidden")};
 
@@ -317,7 +320,7 @@ function openPage(table){currentTable=table;$("dashboardPage").classList.add("hi
 
 function dashboard(){$("dashboardPage").classList.remove("hidden");$("tablePage").classList.add("hidden");$("lessonContentPage").classList.add("hidden");$("crumb").textContent="Tổng quan";currentTable=null}
 
-$("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");if(b.dataset.page==="lesson-content"){currentTable=null;$("dashboardPage").classList.add("hidden");$("tablePage").classList.add("hidden");$("lessonContentPage").classList.remove("hidden");$("crumb").textContent="Biên soạn 10 mục";loadLessonContentCourses()}else if(b.dataset.table)openPage(b.dataset.table);else dashboard()});
+$("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");if(b.dataset.page==="lesson-content"){currentTable=null;$("dashboardPage").classList.add("hidden");$("tablePage").classList.add("hidden");$("lessonContentPage").classList.remove("hidden");$("crumb").textContent="Biên soạn 10 mục";window.loadLessonContentCourses()}else if(b.dataset.table)openPage(b.dataset.table);else dashboard()});
 
 document.querySelectorAll("[data-goto]").forEach(b=>b.onclick=()=>{const t=b.dataset.goto;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.table===t));openPage(t)});
 
