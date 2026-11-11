@@ -8,9 +8,9 @@
 
 <title>Yiersan Chinese — CMS Admin</title>
 
-<link rel="preconnect" href="https\://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link href="https\://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -157,13 +157,13 @@
 
 <div class="modalback" id="editorModal"><div class="modal"><div class="panelhead"><h3 id="modalTitle">Thêm dữ liệu</h3><button class="btn secondary" id="closeModal">Đóng</button></div><p class="muted">Nhập dữ liệu theo định dạng JSON. Không tự thay đổi tên cột của bảng.</p><textarea id="jsonInput" spellcheck="false"></textarea><div id="modalError" class="error"></div><div class="modalfoot"><button class="btn secondary" id="cancelModal">Hủy</button><button class="btn primary" id="saveRecord">Lưu dữ liệu</button></div></div></div>
 
-<script src="https\://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
 // ====== YIERSAN CONFIGURATION: replace these two values with your Supabase Project URL and anon/public key ======
 
-const SUPABASE_URL = "https\://vdrsfjwtnwqwimlsikcc.supabase.co";
+const SUPABASE_URL = "https://vdrsfjwtnwqwimlsikcc.supabase.co";
 
 const SUPABASE_ANON_KEY = "sb_publishable_r5u7jizVQBZ0Zl15Yqauow_50ES7PVq";
 
@@ -187,7 +187,7 @@ const $=id=>document.getElementById(id);
 
 function showError(msg){$("loginError").textContent=msg}
 
-function isConfigured(){return SUPABASE_URL.startsWith("https\://")&&!SUPABASE_URL.includes("PASTE_")&&SUPABASE_ANON_KEY.length>30&&!SUPABASE_ANON_KEY.includes("PASTE_")}
+function isConfigured(){return SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("PASTE_")&&SUPABASE_ANON_KEY.length>30&&!SUPABASE_ANON_KEY.includes("PASTE_")}
 
 async function init(){
 
