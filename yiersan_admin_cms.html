@@ -16,12 +16,14 @@
 
 :root{--ruby:#A71920;--ruby2:#86131a;--cream:#FEFCDA;--ink:#20242b;--muted:#737985;--line:#e9e6e1;--bg:#f7f7f5;--white:#fff;--teal:#168c83;--shadow:0 12px 35px #25252512}
 
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.layout{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:258px;background:#fff;border-right:1px solid var(--line);padding:25px 17px;display:flex;flex-direction:column;z-index:3}.brand{display:flex;gap:12px;align-items:center;padding:4px 8px 27px;border-bottom:1px solid var(--line)}.brandmark{width:42px;height:42px;border-radius:13px;background:var(--ruby);color:#fff;display:grid;place-items:center;font-weight:700;font-size:19px}.brand b{display:block;font-size:15px;letter-spacing:.4px}.brand small{color:var(--muted);font-size:10px;letter-spacing:1.6px}.navlabel{font-size:10px;color:#a1a4aa;letter-spacing:1.6px;font-weight:700;padding:25px 10px 9px}.nav button{width:100%;border:0;background:transparent;text-align:left;padding:11px 12px;border-radius:9px;color:#59606b;font-size:13px;margin:2px 0;display:flex;align-items:center;gap:12px}.nav button:hover,.nav button.active{background:#f9eeee;color:var(--ruby);font-weight:700}.nav .ico{width:19px;text-align:center;font-size:16px}.sidebottom{margin-top:auto;border-top:1px solid var(--line);padding:15px 8px 0;color:var(--muted);font-size:11px;line-height:1.7}.main{margin-left:258px;min-height:100vh}.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:2}.crumb{font-size:13px;color:var(--muted)}.crumb strong{color:var(--ink)}.topright{display:flex;align-items:center;gap:13px}.adminpill{background:#f8eeee;color:var(--ruby);padding:8px 12px;border-radius:20px;font-size:11px;font-weight:700}.content{padding:34px;max-width:1450px;margin:auto}.eyebrow{color:var(--ruby);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}.heading{font:700 30px 'Playfair Display',serif;margin:8px 0 6px}.sub{color:var(--muted);font-size:13px;margin:0 0 26px}.hero{background:linear-gradient(115deg,#7f1119,#b51e27 70%,#ca5552);color:#fff;border-radius:17px;padding:28px 30px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow);margin-bottom:22px}.hero h2{font:600 24px 'Playfair Display',serif;margin:0 0 8px}.hero p{margin:0;color:#f7dddd;font-size:13px}.hero-tag{font-size:11px;border:1px solid #ffffff55;padding:9px 13px;border-radius:20px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:22px}.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 4px 15px #00000004}.stat{padding:19px}.stat .label{font-size:11px;color:var(--muted)}.stat .num{font-size:25px;font-weight:700;margin-top:9px}.stat .hint{font-size:10px;color:var(--teal);margin-top:5px}.panel{padding:22px;margin-bottom:18px}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.panel h3{font-size:15px;margin:0}.muted{color:var(--muted);font-size:12px}.quickgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.quick{border:1px solid var(--line);border-radius:11px;padding:16px;text-align:left;background:#fff}.quick:hover{border-color:#d9a1a3;background:#fffafa}.quick strong{display:block;font-size:13px;margin:8px 0 4px}.quick span{font-size:11px;color:var(--muted)}.btn{border:0;border-radius:8px;padding:10px 15px;font-size:12px;font-weight:700}.primary{background:var(--ruby);color:#fff}.primary:hover{background:var(--ruby2)}.secondary{background:#f4f4f2;color:#454b54;border:1px solid var(--line)}.danger{background:#fff0f0;color:#b4232a;border:1px solid #f4d0d0}.toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.field{border:1px solid #dedfe2;border-radius:8px;padding:10px 12px;background:#fff;color:var(--ink);font-size:12px;min-width:180px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#faf9f7;color:#777e87;font-size:10px;text-transform:uppercase;letter-spacing:.8px}tr:last-child td{border-bottom:0}.empty{text-align:center;padding:35px;color:var(--muted)}.notice{background:#fff9e6;border:1px solid #f0e2a8;padding:13px 15px;border-radius:9px;font-size:12px;line-height:1.6;color:#6c5a20;margin-bottom:18px}.loginwrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at top right,#f5e5e3,transparent 35%),var(--bg)}.login{width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px;box-shadow:var(--shadow)}.login h1{font:700 27px 'Playfair Display',serif;margin:18px 0 7px}.login p{font-size:12px;color:var(--muted);line-height:1.6}.login label,.modal label{display:block;font-size:11px;font-weight:700;margin:15px 0 6px}.login input,.modal input,.modal textarea{width:100%;padding:12px;border:1px solid #dedfe2;border-radius:8px;font-size:13px}.login .btn{width:100%;margin-top:18px}.error{color:#b4232a;font-size:12px;margin-top:12px}.modalback{position:fixed;inset:0;background:#17191f77;display:none;place-items:center;padding:20px;z-index:10}.modal{background:#fff;border-radius:15px;padding:24px;width:min(680px,100%);max-height:90vh;overflow:auto;box-shadow:0 20px 60px #0003}.modal textarea{min-height:260px;font-family:ui-monospace,monospace;font-size:12px}.modalfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}.hidden{display:none!important}.mobilehead{display:none}.sectiontab{border:1px solid var(--line);background:#fff;color:#59606b;border-radius:9px;padding:10px 12px;font-size:11px;text-align:left}.sectiontab.active{border-color:#d7a0a2;background:#fff5f5;color:var(--ruby);font-weight:700}.sectiontab small{display:block;color:#888;margin-top:4px}.sectiontab.done{border-color:#b9ded8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.layout{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:258px;background:#fff;border-right:1px solid var(--line);padding:25px 17px;display:flex;flex-direction:column;z-index:3}.brand{display:flex;gap:12px;align-items:center;padding:4px 8px 27px;border-bottom:1px solid var(--line)}.brandmark{width:42px;height:42px;border-radius:13px;background:var(--ruby);color:#fff;display:grid;place-items:center;font-weight:700;font-size:19px}.brand b{display:block;font-size:15px;letter-spacing:.4px}.brand small{color:var(--muted);font-size:10px;letter-spacing:1.6px}.navlabel{font-size:10px;color:#a1a4aa;letter-spacing:1.6px;font-weight:700;padding:25px 10px 9px}.nav button{width:100%;border:0;background:transparent;text-align:left;padding:11px 12px;border-radius:9px;color:#59606b;font-size:13px;margin:2px 0;display:flex;align-items:center;gap:12px}.nav button:hover,.nav button.active{background:#f9eeee;color:var(--ruby);font-weight:700}.nav .ico{width:19px;text-align:center;font-size:16px}.sidebottom{margin-top:auto;border-top:1px solid var(--line);padding:15px 8px 0;color:var(--muted);font-size:11px;line-height:1.7}.main{margin-left:258px;min-height:100vh}.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:2}.crumb{font-size:13px;color:var(--muted)}.crumb strong{color:var(--ink)}.topright{display:flex;align-items:center;gap:13px}.adminpill{background:#f8eeee;color:var(--ruby);padding:8px 12px;border-radius:20px;font-size:11px;font-weight:700}.content{padding:34px;max-width:1450px;margin:auto}.eyebrow{color:var(--ruby);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}.heading{font:700 30px 'Playfair Display',serif;margin:8px 0 6px}.sub{color:var(--muted);font-size:13px;margin:0 0 26px}.hero{background:linear-gradient(115deg,#7f1119,#b51e27 70%,#ca5552);color:#fff;border-radius:17px;padding:28px 30px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow);margin-bottom:22px}.hero h2{font:600 24px 'Playfair Display',serif;margin:0 0 8px}.hero p{margin:0;color:#f7dddd;font-size:13px}.hero-tag{font-size:11px;border:1px solid #ffffff55;padding:9px 13px;border-radius:20px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:22px}.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 4px 15px #00000004}.stat{padding:19px}.stat .label{font-size:11px;color:var(--muted)}.stat .num{font-size:25px;font-weight:700;margin-top:9px}.stat .hint{font-size:10px;color:var(--teal);margin-top:5px}.panel{padding:22px;margin-bottom:18px}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.panel h3{font-size:15px;margin:0}.muted{color:var(--muted);font-size:12px}.quickgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.quick{border:1px solid var(--line);border-radius:11px;padding:16px;text-align:left;background:#fff}.quick:hover{border-color:#d9a1a3;background:#fffafa}.quick strong{display:block;font-size:13px;margin:8px 0 4px}.quick span{font-size:11px;color:var(--muted)}.btn{border:0;border-radius:8px;padding:10px 15px;font-size:12px;font-weight:700}.primary{background:var(--ruby);color:#fff}.primary:hover{background:var(--ruby2)}.secondary{background:#f4f4f2;color:#454b54;border:1px solid var(--line)}.danger{background:#fff0f0;color:#b4232a;border:1px solid #f4d0d0}.toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.field{border:1px solid #dedfe2;border-radius:8px;padding:10px 12px;background:#fff;color:var(--ink);font-size:12px;min-width:180px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#faf9f7;color:#777e87;font-size:10px;text-transform:uppercase;letter-spacing:.8px}tr:last-child td{border-bottom:0}.empty{text-align:center;padding:35px;color:var(--muted)}.notice{background:#fff9e6;border:1px solid #f0e2a8;padding:13px 15px;border-radius:9px;font-size:12px;line-height:1.6;color:#6c5a20;margin-bottom:18px}.loginwrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at top right,#f5e5e3,transparent 35%),var(--bg)}.login{width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px;box-shadow:var(--shadow)}.login h1{font:700 27px 'Playfair Display',serif;margin:18px 0 7px}.login p{font-size:12px;color:var(--muted);line-height:1.6}.login label,.modal label{display:block;font-size:11px;font-weight:700;margin:15px 0 6px}.login input,.modal input,.modal textarea{width:100%;padding:12px;border:1px solid #dedfe2;border-radius:8px;font-size:13px}.login .btn{width:100%;margin-top:18px}.error{color:#b4232a;font-size:12px;margin-top:12px}.modalback{position:fixed;inset:0;background:#17191f77;display:none;place-items:center;padding:20px;z-index:10}.modal{background:#fff;border-radius:15px;padding:24px;width:min(680px,100%);max-height:90vh;overflow:auto;box-shadow:0 20px 60px #0003}.modal textarea{min-height:260px;font-family:ui-monospace,monospace;font-size:12px}.modalfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}.hidden{display:none!important}.mobilehead{display:none}
 
 @media(max-width:900px){.sidebar{width:220px}.main{margin-left:220px}.stats{grid-template-columns:repeat(2,1fr)}.quickgrid{grid-template-columns:repeat(2,1fr)}.content{padding:22px}}
 
 @media(max-width:650px){.sidebar{position:static;width:100%;height:auto;padding:12px}.brand{padding:4px 5px 12px}.nav{display:flex;overflow:auto;gap:4px}.navlabel,.sidebottom{display:none}.nav button{white-space:nowrap;width:auto;padding:9px}.main{margin:0}.topbar{height:55px;padding:0 16px}.content{padding:18px}.stats{grid-template-columns:repeat(2,1fr)}.hero{padding:21px;display:block}.hero-tag{display:inline-block;margin-top:15px}.quickgrid{grid-template-columns:1fr 1fr}}
 
+
+.sectiontab{border:1px solid var(--line);background:#fff;color:#59606b;border-radius:9px;padding:11px 12px;font-size:11px;text-align:left;min-height:54px}.sectiontab.active{border-color:#d7a0a2;background:#fff5f5;color:var(--ruby);font-weight:700}.sectiontab small{display:block;color:#888;margin-top:5px}.sectiontab.done{border-color:#b9ded8}
 </style>
 
 </head>
@@ -67,7 +69,7 @@
    <button data-table="courses"><span class="ico">▤</span>Khóa học HSK</button>
 
    <button data-table="lessons"><span class="ico">▣</span>Bài học</button>
-   <button data-page="lesson-content"><span class="ico">✎</span>Nội dung 10 mục</button>
+   <button data-page="lesson-content"><span class="ico">✎</span>Biên soạn 10 mục</button>
 
    <button data-table="vocabulary"><span class="ico">文</span>Từ vựng</button>
 
@@ -135,7 +137,28 @@
 
   </section>
 
-  <section class="content hidden" id="tablePage">
+    <section class="content hidden" id="lessonContentPage">
+   <div class="eyebrow">LESSON CONTENT STUDIO</div>
+   <h1 class="heading">Biên soạn nội dung bài học</h1>
+   <p class="sub">Chọn khóa học, bài học và biên soạn riêng từng mục. Nội dung được lưu trực tiếp vào Supabase.</p>
+   <div class="panel">
+    <div class="toolbar">
+     <select class="field" id="lcCourse"><option value="">Đang tải khóa học...</option></select>
+     <select class="field" id="lcLesson" disabled><option value="">Chọn bài học</option></select>
+     <button class="btn secondary" id="lcRefresh" type="button">↻ Làm mới</button>
+    </div>
+    <div class="notice" id="lcNotice" style="margin-top:16px">Đang tải danh sách khóa học...</div>
+   </div>
+   <div class="panel hidden" id="lcWorkspace">
+    <div class="panelhead"><div><div class="eyebrow" id="lcIndex">MỤC 01</div><h3 id="lcSectionTitle">Khởi động & Ôn tập bài cũ</h3><span class="muted" id="lcStatus">Chưa có nội dung</span></div></div>
+    <div id="lcTabs" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:9px;margin-bottom:20px"></div>
+    <label for="lcBody" style="display:block;font-size:12px;font-weight:700;margin:8px 0">Nội dung mục học</label>
+    <textarea id="lcBody" placeholder="Nhập nội dung bài học tại đây..." style="width:100%;min-height:280px;padding:14px;border:1px solid #dedfe2;border-radius:9px;font:13px/1.7 'DM Sans',sans-serif;resize:vertical"></textarea>
+    <div class="toolbar" style="justify-content:space-between;margin-top:14px"><span class="muted" id="lcFoot">Mỗi mục được lưu độc lập.</span><div class="toolbar"><button class="btn secondary" id="lcSaveDraft" type="button">Lưu bản nháp</button><button class="btn primary" id="lcPublish" type="button">Xuất bản mục này</button></div></div>
+    <div class="error" id="lcError" role="status"></div>
+   </div>
+  </section>
+<section class="content hidden" id="tablePage">
 
    <div class="eyebrow">CONTENT MANAGEMENT</div><h1 class="heading" id="tableTitle">Quản lý dữ liệu</h1><p class="sub" id="tableDesc">Thêm, chỉnh sửa và quản lý nội dung.</p>
 
@@ -248,37 +271,34 @@ $("loginBtn").onclick=async()=>{showError("");if(!isConfigured()){
 const LESSON_SECTIONS=[
  ['warmup','Khởi động & Ôn tập bài cũ'],['introduction','Dẫn nhập chủ đề'],['vocabulary','Từ vựng mới'],['sentence_patterns','Mẫu câu'],['grammar','Ngữ pháp & Cấu trúc câu'],['skills','Phát triển kỹ năng / Nghe hội thoại'],['practice_games','Luyện tập / Trò chơi'],['hsk_practice','Luyện tập dạng đề HSK'],['homework','Bài tập về nhà'],['extension','Mở rộng']
 ];
-let lcLessons=[],lcSections=[],lcCurrent=null,lcActiveKey=null;
+let lcSections=[],lcActiveKey='warmup';
 async function loadLessonContentCourses(){
- const {data,error}=await sb.from('courses').select('*').order('id');
- const sel=$("lcCourse");sel.innerHTML='<option value="">Chọn khóa học HSK</option>';
+ const sel=$("lcCourse");sel.innerHTML='<option value="">Đang tải khóa học...</option>';
+ const {data,error}=await sb.from('courses').select('*');
  if(error){$("lcNotice").textContent='Không tải được khóa học: '+error.message;return;}
- (data||[]).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name||c.title||c.course_name||c.level_name||c.code||c.level||('Khóa học '+c.id.slice(0,6));sel.appendChild(o)});
+ sel.innerHTML='<option value="">Chọn khóa học HSK</option>';
+ (data||[]).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name||c.title||c.course_name||c.level_name||c.code||c.level||'Khóa học';sel.appendChild(o)});
  $("lcNotice").textContent='Đã tải '+(data||[]).length+' khóa học. Hãy chọn khóa học rồi chọn bài học.';
 }
-$("lcCourse").onchange=async()=>{
- const id=$("lcCourse").value,sel=$("lcLesson");sel.innerHTML='<option value="">Đang tải bài học...</option>';sel.disabled=!id;$("lcWorkspace").classList.add('hidden');if(!id)return;
+$("lcCourse").addEventListener('change',async()=>{
+ const id=$("lcCourse").value,sel=$("lcLesson");sel.disabled=!id;sel.innerHTML='<option value="">'+(id?'Đang tải bài học...':'Chọn bài học')+'</option>';$("lcWorkspace").classList.add('hidden');if(!id)return;
  const {data,error}=await sb.from('lessons').select('id,lesson_number,title,topic,course_id').eq('course_id',id).order('lesson_number');
  if(error){$("lcNotice").textContent='Không tải được bài học: '+error.message;return;}
- lcLessons=data||[];sel.innerHTML='<option value="">Chọn bài học</option>';
- lcLessons.forEach(l=>{const o=document.createElement('option');o.value=l.id;o.textContent='Bài '+l.lesson_number+' — '+(l.title||l.topic||'Chưa đặt tên');sel.appendChild(o)});
- $("lcNotice").textContent='Có '+lcLessons.length+' bài học trong khóa này. Chọn bài học để biên soạn.';
-};
-$("lcLesson").onchange=loadLessonSections;
-$("lcRefresh").onclick=()=>{if($("lcLesson").value)loadLessonSections();else loadLessonContentCourses()};
+ sel.innerHTML='<option value="">Chọn bài học</option>';(data||[]).forEach(l=>{const o=document.createElement('option');o.value=l.id;o.textContent='Bài '+l.lesson_number+' — '+(l.title||l.topic||'Chưa đặt tên');sel.appendChild(o)});
+ $("lcNotice").textContent='Có '+(data||[]).length+' bài học. Chọn bài học để biên soạn.';
+});
+$("lcLesson").addEventListener('change',loadLessonSections);
+$("lcRefresh").onclick=()=>{if($("lcCourse").value){$("lcCourse").dispatchEvent(new Event('change'))}else loadLessonContentCourses()};
 async function loadLessonSections(){
- const lessonId=$("lcLesson").value;if(!lessonId)return;
+ const lessonId=$("lcLesson").value;if(!lessonId){$("lcWorkspace").classList.add('hidden');return;}
  const {data,error}=await sb.from('lesson_sections').select('*').eq('lesson_id',lessonId).order('sort_order');
  if(error){$("lcNotice").textContent='Không tải được 10 mục: '+error.message;return;}
- lcSections=data||[];lcActiveKey=LESSON_SECTIONS[0][0];$("lcWorkspace").classList.remove('hidden');renderLessonSectionTabs();showLessonSection(lcActiveKey);
+ lcSections=data||[];lcActiveKey='warmup';$("lcWorkspace").classList.remove('hidden');renderLessonTabs();showLessonSection(lcActiveKey);
 }
-function renderLessonSectionTabs(){
- const el=$("lcTabs");el.innerHTML='';LESSON_SECTIONS.forEach(([key,title],i)=>{const row=lcSections.find(x=>x.section_key===key);const b=document.createElement('button');b.className='sectiontab'+(key===lcActiveKey?' active':'')+(row&&row.is_published?' done':'');b.innerHTML='<b>'+(i+1)+'. '+escapeHtml(title)+'</b><small>'+(row?(row.is_published?'Đã xuất bản':(String(row.content?.text||'').trim()?'Đã có bản nháp':'Chưa nhập nội dung')):'Chưa tạo bản ghi')+'</small>';b.onclick=()=>{lcActiveKey=key;renderLessonSectionTabs();showLessonSection(key)};el.appendChild(b)});
-}
-function showLessonSection(key){const [idx,title]=[LESSON_SECTIONS.findIndex(x=>x[0]===key),LESSON_SECTIONS.find(x=>x[0]===key)?.[1]];const row=lcSections.find(x=>x.section_key===key);lcCurrent=row||null;$("lcSectionTitle").textContent=title;$("lcIndex").textContent='MỤC '+String(idx+1).padStart(2,'0');$("lcBody").value=row?.content?.text||'';$("lcStatus").textContent=row?(row.is_published?'Đã xuất bản':'Bản nháp'):'Chưa có dữ liệu';$("lcError").textContent='';$("lcFoot").textContent='Mỗi mục được lưu độc lập. Bạn có thể quay lại chỉnh sửa bất cứ lúc nào.';}
+function renderLessonTabs(){const el=$("lcTabs");el.innerHTML='';LESSON_SECTIONS.forEach(([key,title],i)=>{const row=lcSections.find(x=>x.section_key===key);const b=document.createElement('button');b.type='button';b.className='sectiontab'+(key===lcActiveKey?' active':'')+(row&&row.is_published?' done':'');const status=row?(row.is_published?'Đã xuất bản':(String(row.content?.text||'').trim()?'Đã có bản nháp':'Chưa nhập nội dung')):'Chưa có bản ghi';b.innerHTML='<b>'+(i+1)+'. '+escapeHtml(title)+'</b><small>'+status+'</small>';b.onclick=()=>{lcActiveKey=key;renderLessonTabs();showLessonSection(key)};el.appendChild(b)});}
+function showLessonSection(key){const i=LESSON_SECTIONS.findIndex(x=>x[0]===key),def=LESSON_SECTIONS[i],row=lcSections.find(x=>x.section_key===key);$("lcIndex").textContent='MỤC '+String(i+1).padStart(2,'0');$("lcSectionTitle").textContent=def[1];$("lcBody").value=row?.content?.text||'';$("lcStatus").textContent=row?(row.is_published?'Đã xuất bản':'Bản nháp'):'Chưa có nội dung';$("lcError").textContent='';}
 async function saveLessonSection(publish){
- const lessonId=$("lcLesson").value;if(!lessonId||!lcActiveKey)return;
- const def=LESSON_SECTIONS.find(x=>x[0]===lcActiveKey);const existing=lcSections.find(x=>x.section_key===lcActiveKey);
+ const lessonId=$("lcLesson").value;if(!lessonId)return;const def=LESSON_SECTIONS.find(x=>x[0]===lcActiveKey),existing=lcSections.find(x=>x.section_key===lcActiveKey);
  const payload={lesson_id:lessonId,section_key:lcActiveKey,title:def[1],content:{text:$("lcBody").value},sort_order:LESSON_SECTIONS.findIndex(x=>x[0]===lcActiveKey)+1,is_enabled:true,is_published:!!publish,updated_at:new Date().toISOString()};
  let result;if(existing)result=await sb.from('lesson_sections').update(payload).eq('id',existing.id);else result=await sb.from('lesson_sections').insert(payload);
  if(result.error){$("lcError").textContent='Chưa lưu được: '+result.error.message;return;}
@@ -293,11 +313,11 @@ $("logoutBtn").onclick=async()=>{await sb.auth.signOut();$("app").classList.add(
 
 async function loadCounts(){for(const [table,id] of [["courses","countCourses"],["lessons","countLessons"],["vocabulary","countVocabulary"],["profiles","countProfiles"]]){const {count,error}=await sb.from(table).select("*",{count:"exact",head:true});$(id).textContent=error?"—":count}}
 
-function openPage(table){$("lessonContentPage").classList.add("hidden");currentTable=table;$("dashboardPage").classList.add("hidden");$("tablePage").classList.remove("hidden");$("crumb").textContent=TABLES[table]||table;$("tableTitle").textContent=TABLES[table]||table;$("tableName").textContent=table;$("tableDesc").textContent="Quản lý bản ghi trong bảng "+table+" của cơ sở dữ liệu Yiersan Chinese.";$("searchInput").value="";loadTable()}
+function openPage(table){currentTable=table;$("dashboardPage").classList.add("hidden");$("lessonContentPage").classList.add("hidden");$("tablePage").classList.remove("hidden");$("crumb").textContent=TABLES[table]||table;$("tableTitle").textContent=TABLES[table]||table;$("tableName").textContent=table;$("tableDesc").textContent="Quản lý bản ghi trong bảng "+table+" của cơ sở dữ liệu Yiersan Chinese.";$("searchInput").value="";loadTable()}
 
-function dashboard(){$("lessonContentPage").classList.add("hidden");$("dashboardPage").classList.remove("hidden");$("tablePage").classList.add("hidden");$("crumb").textContent="Tổng quan";currentTable=null}
+function dashboard(){$("dashboardPage").classList.remove("hidden");$("tablePage").classList.add("hidden");$("lessonContentPage").classList.add("hidden");$("crumb").textContent="Tổng quan";currentTable=null}
 
-$("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");if(b.dataset.page==="lesson-content"){currentTable=null;$("dashboardPage").classList.add("hidden");$("tablePage").classList.add("hidden");$("lessonContentPage").classList.remove("hidden");$("crumb").textContent="Nội dung 10 mục";loadLessonContentCourses()}else if(b.dataset.table)openPage(b.dataset.table);else dashboard()});
+$("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");if(b.dataset.page==="lesson-content"){currentTable=null;$("dashboardPage").classList.add("hidden");$("tablePage").classList.add("hidden");$("lessonContentPage").classList.remove("hidden");$("crumb").textContent="Biên soạn 10 mục";loadLessonContentCourses()}else if(b.dataset.table)openPage(b.dataset.table);else dashboard()});
 
 document.querySelectorAll("[data-goto]").forEach(b=>b.onclick=()=>{const t=b.dataset.goto;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.table===t));openPage(t)});
 
@@ -336,50 +356,6 @@ $("saveRecord").onclick=async()=>{let obj;try{obj=JSON.parse($("jsonInput").valu
  if(result.error){$("modalError").textContent=result.error.message;return}closeEditor();await loadTable();loadCounts()};
 
 async function deleteRecord(key){if(!confirm("Bạn chắc chắn muốn xóa bản ghi này? Thao tác này không thể hoàn tác."))return;const row=rows.find(r=>String(r.id??r.user_id??r.email??"")===String(key));if(!row)return;const col=row.id!==undefined?"id":row.user_id!==undefined?"user_id":"email";const {error}=await sb.from(currentTable).delete().eq(col,key);if(error){alert("Không xóa được: "+error.message);return}await loadTable();loadCounts()}
-
-
-// ===== BIÊN SOẠN 10 MỤC BÀI HỌC =====
-const LESSON_SECTIONS=[
- ['warmup','Khởi động & Ôn tập bài cũ'],['introduction','Dẫn nhập chủ đề'],['vocabulary','Từ vựng mới'],['sentence_patterns','Mẫu câu'],['grammar','Ngữ pháp & Cấu trúc câu'],['skills','Phát triển kỹ năng / Nghe hội thoại'],['practice_games','Luyện tập / Trò chơi'],['hsk_practice','Luyện tập dạng đề HSK'],['homework','Bài tập về nhà'],['extension','Mở rộng']
-];
-let lcLessons=[],lcSections=[],lcCurrent=null,lcActiveKey=null;
-async function loadLessonContentCourses(){
- const {data,error}=await sb.from('courses').select('*').order('id');
- const sel=$("lcCourse");sel.innerHTML='<option value="">Chọn khóa học HSK</option>';
- if(error){$("lcNotice").textContent='Không tải được khóa học: '+error.message;return;}
- (data||[]).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name||c.title||c.course_name||c.level_name||c.code||c.level||('Khóa học '+c.id.slice(0,6));sel.appendChild(o)});
- $("lcNotice").textContent='Đã tải '+(data||[]).length+' khóa học. Hãy chọn khóa học rồi chọn bài học.';
-}
-$("lcCourse").onchange=async()=>{
- const id=$("lcCourse").value,sel=$("lcLesson");sel.innerHTML='<option value="">Đang tải bài học...</option>';sel.disabled=!id;$("lcWorkspace").classList.add('hidden');if(!id)return;
- const {data,error}=await sb.from('lessons').select('id,lesson_number,title,topic,course_id').eq('course_id',id).order('lesson_number');
- if(error){$("lcNotice").textContent='Không tải được bài học: '+error.message;return;}
- lcLessons=data||[];sel.innerHTML='<option value="">Chọn bài học</option>';
- lcLessons.forEach(l=>{const o=document.createElement('option');o.value=l.id;o.textContent='Bài '+l.lesson_number+' — '+(l.title||l.topic||'Chưa đặt tên');sel.appendChild(o)});
- $("lcNotice").textContent='Có '+lcLessons.length+' bài học trong khóa này. Chọn bài học để biên soạn.';
-};
-$("lcLesson").onchange=loadLessonSections;
-$("lcRefresh").onclick=()=>{if($("lcLesson").value)loadLessonSections();else loadLessonContentCourses()};
-async function loadLessonSections(){
- const lessonId=$("lcLesson").value;if(!lessonId)return;
- const {data,error}=await sb.from('lesson_sections').select('*').eq('lesson_id',lessonId).order('sort_order');
- if(error){$("lcNotice").textContent='Không tải được 10 mục: '+error.message;return;}
- lcSections=data||[];lcActiveKey=LESSON_SECTIONS[0][0];$("lcWorkspace").classList.remove('hidden');renderLessonSectionTabs();showLessonSection(lcActiveKey);
-}
-function renderLessonSectionTabs(){
- const el=$("lcTabs");el.innerHTML='';LESSON_SECTIONS.forEach(([key,title],i)=>{const row=lcSections.find(x=>x.section_key===key);const b=document.createElement('button');b.className='sectiontab'+(key===lcActiveKey?' active':'')+(row&&row.is_published?' done':'');b.innerHTML='<b>'+(i+1)+'. '+escapeHtml(title)+'</b><small>'+(row?(row.is_published?'Đã xuất bản':(String(row.content?.text||'').trim()?'Đã có bản nháp':'Chưa nhập nội dung')):'Chưa tạo bản ghi')+'</small>';b.onclick=()=>{lcActiveKey=key;renderLessonSectionTabs();showLessonSection(key)};el.appendChild(b)});
-}
-function showLessonSection(key){const [idx,title]=[LESSON_SECTIONS.findIndex(x=>x[0]===key),LESSON_SECTIONS.find(x=>x[0]===key)?.[1]];const row=lcSections.find(x=>x.section_key===key);lcCurrent=row||null;$("lcSectionTitle").textContent=title;$("lcIndex").textContent='MỤC '+String(idx+1).padStart(2,'0');$("lcBody").value=row?.content?.text||'';$("lcStatus").textContent=row?(row.is_published?'Đã xuất bản':'Bản nháp'):'Chưa có dữ liệu';$("lcError").textContent='';$("lcFoot").textContent='Mỗi mục được lưu độc lập. Bạn có thể quay lại chỉnh sửa bất cứ lúc nào.';}
-async function saveLessonSection(publish){
- const lessonId=$("lcLesson").value;if(!lessonId||!lcActiveKey)return;
- const def=LESSON_SECTIONS.find(x=>x[0]===lcActiveKey);const existing=lcSections.find(x=>x.section_key===lcActiveKey);
- const payload={lesson_id:lessonId,section_key:lcActiveKey,title:def[1],content:{text:$("lcBody").value},sort_order:LESSON_SECTIONS.findIndex(x=>x[0]===lcActiveKey)+1,is_enabled:true,is_published:!!publish,updated_at:new Date().toISOString()};
- let result;if(existing)result=await sb.from('lesson_sections').update(payload).eq('id',existing.id);else result=await sb.from('lesson_sections').insert(payload);
- if(result.error){$("lcError").textContent='Chưa lưu được: '+result.error.message;return;}
- await loadLessonSections();$("lcError").textContent=publish?'Đã xuất bản mục này.':'Đã lưu bản nháp thành công.';
-}
-$("lcSaveDraft").onclick=()=>saveLessonSection(false);
-$("lcPublish").onclick=()=>saveLessonSection(true);
 
 init();
 
