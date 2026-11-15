@@ -23,7 +23,7 @@
 @media(max-width:650px){.sidebar{position:static;width:100%;height:auto;padding:12px}.brand{padding:4px 5px 12px}.nav{display:flex;overflow:auto;gap:4px}.navlabel,.sidebottom{display:none}.nav button{white-space:nowrap;width:auto;padding:9px}.main{margin:0}.topbar{height:55px;padding:0 16px}.content{padding:18px}.stats{grid-template-columns:repeat(2,1fr)}.hero{padding:21px;display:block}.hero-tag{display:inline-block;margin-top:15px}.quickgrid{grid-template-columns:1fr 1fr}}
 
 
-.sectiontab{border:1px solid var(--line);background:#fff;color:#59606b;border-radius:9px;padding:11px 12px;font-size:11px;text-align:left;min-height:54px}.sectiontab.active{border-color:#d7a0a2;background:#fff5f5;color:var(--ruby);font-weight:700}.sectiontab small{display:block;color:#888;margin-top:5px}.sectiontab.done{border-color:#b9ded8}
+.sectiontab{border:1px solid var(--line);background:#fff;color:#59606b;border-radius:9px;padding:11px 12px;font-size:11px;text-align:left;min-height:54px}.sectiontab.active{border-color:#d7a0a2;background:#fff5f5;color:var(--ruby);font-weight:700}.sectiontab small{display:block;color:#888;margin-top:5px}.sectiontab.done{border-color:#b9ded8}.btn:disabled{opacity:.55;cursor:wait}#lcError{min-height:18px}
 </style>
 
 </head>
@@ -291,20 +291,52 @@ $("lcCourse").addEventListener('change',async()=>{
 });
 $("lcLesson").addEventListener('change',loadLessonSections);
 $("lcRefresh").onclick=()=>{if($("lcCourse").value){$("lcCourse").dispatchEvent(new Event('change'))}else window.loadLessonContentCourses()};
-async function loadLessonSections(){
- const lessonId=$("lcLesson").value;if(!lessonId){$("lcWorkspace").classList.add('hidden');return;}
+async function loadLessonSections(keepActive=true){
+ const lessonId=$("lcLesson").value;
+ if(!lessonId){$("lcWorkspace").classList.add('hidden');return;}
+ const activeBeforeLoad=lcActiveKey;
  const {data,error}=await sb.from('lesson_sections').select('*').eq('lesson_id',lessonId).order('sort_order');
  if(error){$("lcNotice").textContent='Không tải được 10 mục: '+error.message;return;}
- lcSections=data||[];lcActiveKey='warmup';$("lcWorkspace").classList.remove('hidden');renderLessonTabs();showLessonSection(lcActiveKey);
+ lcSections=data||[];
+ const activeStillExists=LESSON_SECTIONS.some(x=>x[0]===activeBeforeLoad);
+ lcActiveKey=(keepActive && activeStillExists)?activeBeforeLoad:'warmup';
+ $("lcWorkspace").classList.remove('hidden');
+ renderLessonTabs();
+ showLessonSection(lcActiveKey);
 }
 function renderLessonTabs(){const el=$("lcTabs");el.innerHTML='';LESSON_SECTIONS.forEach(([key,title],i)=>{const row=lcSections.find(x=>x.section_key===key);const b=document.createElement('button');b.type='button';b.className='sectiontab'+(key===lcActiveKey?' active':'')+(row&&row.is_published?' done':'');const status=row?(row.is_published?'Đã xuất bản':(String(row.content?.text||'').trim()?'Đã có bản nháp':'Chưa nhập nội dung')):'Chưa có bản ghi';b.innerHTML='<b>'+(i+1)+'. '+escapeHtml(title)+'</b><small>'+status+'</small>';b.onclick=()=>{lcActiveKey=key;renderLessonTabs();showLessonSection(key)};el.appendChild(b)});}
 function showLessonSection(key){const i=LESSON_SECTIONS.findIndex(x=>x[0]===key),def=LESSON_SECTIONS[i],row=lcSections.find(x=>x.section_key===key);$("lcIndex").textContent='MỤC '+String(i+1).padStart(2,'0');$("lcSectionTitle").textContent=def[1];$("lcBody").value=row?.content?.text||'';$("lcStatus").textContent=row?(row.is_published?'Đã xuất bản':'Bản nháp'):'Chưa có nội dung';$("lcError").textContent='';}
 async function saveLessonSection(publish){
- const lessonId=$("lcLesson").value;if(!lessonId)return;const def=LESSON_SECTIONS.find(x=>x[0]===lcActiveKey),existing=lcSections.find(x=>x.section_key===lcActiveKey);
- const payload={lesson_id:lessonId,section_key:lcActiveKey,title:def[1],content:{text:$("lcBody").value},sort_order:LESSON_SECTIONS.findIndex(x=>x[0]===lcActiveKey)+1,is_enabled:true,is_published:!!publish,updated_at:new Date().toISOString()};
- let result;if(existing)result=await sb.from('lesson_sections').update(payload).eq('id',existing.id);else result=await sb.from('lesson_sections').insert(payload);
- if(result.error){$("lcError").textContent='Chưa lưu được: '+result.error.message;return;}
- await loadLessonSections();$("lcError").textContent=publish?'Đã xuất bản mục này.':'Đã lưu bản nháp thành công.';
+ const lessonId=$("lcLesson").value;
+ if(!lessonId){$("lcError").textContent='Vui lòng chọn bài học trước khi lưu.';return;}
+ const def=LESSON_SECTIONS.find(x=>x[0]===lcActiveKey);
+ if(!def){$("lcError").textContent='Không xác định được mục đang biên soạn.';return;}
+ const draftText=$("lcBody").value;
+ const payload={
+  lesson_id:lessonId,
+  section_key:lcActiveKey,
+  title:def[1],
+  content:{text:draftText},
+  sort_order:LESSON_SECTIONS.findIndex(x=>x[0]===lcActiveKey)+1,
+  is_enabled:true,
+  is_published:!!publish,
+  updated_at:new Date().toISOString()
+ };
+ const draftBtn=$("lcSaveDraft"),publishBtn=$("lcPublish");
+ draftBtn.disabled=true;publishBtn.disabled=true;
+ $("lcError").textContent='Đang lưu...';
+ try{
+  const {error}=await sb.from('lesson_sections')
+   .upsert(payload,{onConflict:'lesson_id,section_key'});
+  if(error){$("lcError").textContent='Chưa lưu được: '+error.message;return;}
+  // Tải lại dữ liệu nhưng giữ nguyên mục đang mở, không tự nhảy về mục 1.
+  await loadLessonSections(true);
+  $("lcError").textContent=publish?'Đã xuất bản mục này.':'Đã lưu bản nháp thành công.';
+ }catch(e){
+  $("lcError").textContent='Có lỗi khi lưu: '+(e.message||e);
+ }finally{
+  draftBtn.disabled=false;publishBtn.disabled=false;
+ }
 }
 $("lcSaveDraft").onclick=()=>saveLessonSection(false);
 $("lcPublish").onclick=()=>saveLessonSection(true);
