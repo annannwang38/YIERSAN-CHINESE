@@ -96,6 +96,7 @@ button,input,textarea,select{font-family:'Be Vietnam Pro','Noto Sans SC',sans-se
    <button data-table="exercise_answers"><span class="ico">≡</span>Đáp án</button>
 
    <button data-table="profiles"><span class="ico">♙</span>Hồ sơ học viên</button>
+   <button data-page="student-access"><span class="ico">🔑</span>Quản lý quyền học</button>
 
   </nav>
 
@@ -181,6 +182,13 @@ button,input,textarea,select{font-family:'Be Vietnam Pro','Noto Sans SC',sans-se
     <div class="error" id="lcError" role="status"></div>
    </div>
   </section>
+
+<section class="content hidden" id="studentAccessPage">
+ <div class="eyebrow">STUDENT ACCESS CONTROL</div><h1 class="heading">Quản lý quyền học</h1><p class="sub">Tìm học viên, xem quyền khóa học và cấp hoặc thu hồi quyền HSK3–HSK6.</p>
+ <div class="panel"><div class="toolbar"><input class="field" id="studentSearch" placeholder="Mã học viên hoặc tên học viên" style="min-width:min(360px,100%)"><button class="btn primary" id="studentSearchBtn">Tìm học viên</button><button class="btn secondary" id="studentClearBtn">Xóa tìm kiếm</button></div><div id="studentSearchNotice" class="notice" style="margin-top:16px">Nhập mã học viên hoặc tên để tìm kiếm.</div><div id="studentResults"></div></div>
+ <div class="panel hidden" id="studentDetailPanel"><div class="panelhead"><div><h3 id="studentDetailName">Học viên</h3><span class="muted" id="studentDetailCode"></span></div></div><div id="studentEntitlements"></div><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Cấp quyền khóa học</h3><div class="toolbar" style="margin-top:14px"><select class="field" id="grantCourse"><option value="HSK3">HSK3</option><option value="HSK4">HSK4</option><option value="HSK5">HSK5</option><option value="HSK6">HSK6</option></select><input class="field" id="grantExpiry" type="date" title="Ngày hết hạn (để trống nếu không hết hạn)"><input class="field" id="grantNotes" placeholder="Ghi chú (không bắt buộc)"><button class="btn primary" id="grantBtn">Cấp quyền</button></div><div class="error" id="studentAccessError"></div></div>
+</section>
+
 <section class="content hidden" id="tablePage">
 
    <div class="eyebrow">CONTENT MANAGEMENT</div><h1 class="heading" id="tableTitle">Quản lý dữ liệu</h1><p class="sub" id="tableDesc">Thêm, chỉnh sửa và quản lý nội dung.</p>
@@ -223,7 +231,7 @@ const TABLES = {
 
  exercises:"Bài tập", exercise_questions:"Câu hỏi bài tập",
 
- exercise_answers:"Đáp án bài tập", profiles:"Hồ sơ học viên"
+ exercise_answers:"Đáp án bài tập", profiles:"Hồ sơ học viên", course_entitlements:"Quyền truy cập khóa học"
 
 };
 
@@ -384,11 +392,21 @@ $("logoutBtn").onclick=async()=>{await sb.auth.signOut();$("app").classList.add(
 
 async function loadCounts(){for(const [table,id] of [["courses","countCourses"],["lessons","countLessons"],["vocabulary","countVocabulary"],["profiles","countProfiles"]]){const {count,error}=await sb.from(table).select("*",{count:"exact",head:true});$(id).textContent=error?"—":count}}
 
-function openPage(table){currentTable=table;$("dashboardPage").classList.add("hidden");$("lessonContentPage").classList.add("hidden");$("tablePage").classList.remove("hidden");$("crumb").textContent=TABLES[table]||table;$("tableTitle").textContent=TABLES[table]||table;$("tableName").textContent=table;$("tableDesc").textContent="Quản lý bản ghi trong bảng "+table+" của cơ sở dữ liệu Yiersan Chinese.";$("searchInput").value="";loadTable()}
+function openPage(table){currentTable=table;hideAllPages();$("tablePage").classList.remove("hidden");$("crumb").textContent=TABLES[table]||table;$("tableTitle").textContent=TABLES[table]||table;$("tableName").textContent=table;$("tableDesc").textContent="Quản lý bản ghi trong bảng "+table+" của cơ sở dữ liệu Yiersan Chinese.";$("searchInput").value="";loadTable()}
 
-function dashboard(){$("dashboardPage").classList.remove("hidden");$("tablePage").classList.add("hidden");$("lessonContentPage").classList.add("hidden");$("crumb").textContent="Tổng quan";currentTable=null}
+function dashboard(){hideAllPages();$("dashboardPage").classList.remove("hidden");$("crumb").textContent="Tổng quan";currentTable=null}
 
-$("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");if(b.dataset.page==="lesson-content"){currentTable=null;$("dashboardPage").classList.add("hidden");$("tablePage").classList.add("hidden");$("lessonContentPage").classList.remove("hidden");$("crumb").textContent="Biên soạn 10 mục";window.loadLessonContentCourses()}else if(b.dataset.table)openPage(b.dataset.table);else dashboard()});
+
+let selectedStudent=null;
+function hideAllPages(){["dashboardPage","tablePage","lessonContentPage","studentAccessPage"].forEach(id=>$(id).classList.add("hidden"));}
+async function searchStudents(){const q=$("studentSearch").value.trim();if(!q){$("studentSearchNotice").textContent="Vui lòng nhập mã học viên hoặc tên.";return}$("studentSearchNotice").textContent="Đang tìm...";$("studentResults").innerHTML="";$("studentDetailPanel").classList.add("hidden");const {data,error}=await sb.from("profiles").select("id,full_name,student_code,role").or(`student_code.ilike.%${q}%,full_name.ilike.%${q}%`).limit(30);if(error){$("studentSearchNotice").textContent="Lỗi tìm kiếm: "+error.message;return}if(!data?.length){$("studentSearchNotice").textContent="Không tìm thấy học viên phù hợp.";return}$("studentSearchNotice").textContent=`Tìm thấy ${data.length} hồ sơ.`;$("studentResults").innerHTML='<div class="tablewrap"><table><thead><tr><th>Họ tên</th><th>Mã học viên</th><th>Vai trò</th><th></th></tr></thead><tbody>'+data.map(x=>`<tr><td>${escapeHtml(x.full_name||"—")}</td><td>${escapeHtml(x.student_code||"—")}</td><td>${escapeHtml(x.role||"student")}</td><td><button class="btn secondary chooseStudent" data-id="${escapeHtml(x.id)}">Chọn</button></td></tr>`).join('')+'</tbody></table></div>';$("studentResults").querySelectorAll(".chooseStudent").forEach(b=>b.onclick=()=>selectStudent(data.find(x=>x.id===b.dataset.id)))}
+async function selectStudent(st){selectedStudent=st;$('studentDetailPanel').classList.remove('hidden');$('studentDetailName').textContent=st.full_name||'Học viên';$('studentDetailCode').textContent=st.student_code||st.id;await loadStudentEntitlements()}
+async function loadStudentEntitlements(){if(!selectedStudent)return;const box=$('studentEntitlements');box.innerHTML='Đang tải quyền học...';const {data,error}=await sb.from('course_entitlements').select('*').eq('user_id',selectedStudent.id).order('course_level');if(error){box.innerHTML='<div class="error">Không tải được quyền học: '+escapeHtml(error.message)+'</div>';return}const levels=['HSK3','HSK4','HSK5','HSK6'];box.innerHTML='<div class="tablewrap"><table><thead><tr><th>Khóa</th><th>Trạng thái</th><th>Cấp ngày</th><th>Hết hạn</th><th>Ghi chú</th><th></th></tr></thead><tbody>'+levels.map(l=>{const r=(data||[]).find(x=>x.course_level===l);const active=r&&r.is_active&&(!r.expires_at||new Date(r.expires_at)>=new Date());return `<tr><td><b>${l}</b></td><td>${r?(active?'Đang mở':'Không hoạt động'):'Chưa cấp'}</td><td>${r?.granted_at?new Date(r.granted_at).toLocaleDateString('vi-VN'):'—'}</td><td>${r?.expires_at?new Date(r.expires_at).toLocaleDateString('vi-VN'):'Không thời hạn'}</td><td>${escapeHtml(r?.notes||'—')}</td><td>${r&&r.is_active?`<button class="btn danger revokeAccess" data-level="${l}">Thu hồi</button>`:'—'}</td></tr>`}).join('')+'</tbody></table></div>';box.querySelectorAll('.revokeAccess').forEach(b=>b.onclick=()=>revokeCourse(b.dataset.level))}
+async function grantCourse(){if(!selectedStudent)return;$('studentAccessError').textContent='';const level=$('grantCourse').value,expiry=$('grantExpiry').value||null,notes=$('grantNotes').value.trim()||null;const exp=expiry?new Date(expiry+'T23:59:59').toISOString():null;const {error}=await sb.rpc('admin_grant_course',{p_user_id:selectedStudent.id,p_course_level:level,p_expires_at:exp,p_notes:notes});if(error){$('studentAccessError').textContent='Không cấp được quyền: '+error.message;return}$('studentAccessError').textContent='Đã cấp quyền '+level+' thành công.';$('grantNotes').value='';$('grantExpiry').value='';await loadStudentEntitlements()}
+async function revokeCourse(level){if(!selectedStudent||!confirm('Thu hồi quyền '+level+' của học viên này?'))return;$('studentAccessError').textContent='';const {error}=await sb.rpc('admin_revoke_course',{p_user_id:selectedStudent.id,p_course_level:level});if(error){$('studentAccessError').textContent='Không thu hồi được: '+error.message;return}await loadStudentEntitlements()}
+$('studentSearchBtn').onclick=searchStudents;$('studentSearch').addEventListener('keydown',e=>{if(e.key==='Enter')searchStudents()});$('studentClearBtn').onclick=()=>{$('studentSearch').value='';$('studentSearchNotice').textContent='Nhập mã học viên hoặc tên để tìm kiếm.';$('studentResults').innerHTML='';$('studentDetailPanel').classList.add('hidden');selectedStudent=null};$('grantBtn').onclick=grantCourse;
+
+$("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");if(b.dataset.page==="lesson-content"){currentTable=null;hideAllPages();$("lessonContentPage").classList.remove("hidden");$("crumb").textContent="Biên soạn 10 mục";window.loadLessonContentCourses()}else if(b.dataset.page==="student-access"){currentTable=null;hideAllPages();$("studentAccessPage").classList.remove("hidden");$("crumb").textContent="Quản lý quyền học"}else if(b.dataset.table)openPage(b.dataset.table);else dashboard()});
 
 document.querySelectorAll("[data-goto]").forEach(b=>b.onclick=()=>{const t=b.dataset.goto;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.table===t));openPage(t)});
 
