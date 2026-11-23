@@ -11,8 +11,14 @@
 @media(max-width:1050px){.sidebar{width:220px}main{margin-left:220px;width:calc(100% - 220px);padding:22px}.stats{grid-template-columns:repeat(2,1fr)}.grid-two{grid-template-columns:1fr}.level-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.sidebar{transform:translateX(-100%);transition:.25s;width:260px;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}main{margin:0;width:100%;padding:16px 15px 85px}.mobile-menu{display:block}.topbar{margin-bottom:18px}.top-actions .pill{display:none}.hero{padding:22px;min-height:170px}.hero h1{font-size:23px}.hero-art{width:90px}.book{width:70px;height:90px;font-size:30px}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:21px}.level-grid,.module-grid,.pricing,.settings-grid{grid-template-columns:1fr}.lesson-detail{grid-template-columns:1fr}.lesson-row{gap:9px;padding:11px}.lesson-row .status{display:none}.toolbar .search{width:100%}.exercise-box{padding:20px 15px}.question{font-size:23px}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);justify-content:space-around;padding:9px 3px calc(9px + env(safe-area-inset-bottom));z-index:4}.mobile-nav button{background:none;color:#72817d;font-size:9px;display:grid;gap:3px;justify-items:center}.mobile-nav button span{font-size:17px}.mobile-nav button.active{color:var(--teal);font-weight:800}.crumb{font-size:10px}h1{font-size:23px}.hero-art{opacity:.85}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+.auth-gate{position:fixed;inset:0;z-index:9999;background:#f6f9f8;display:flex;align-items:center;justify-content:center;padding:18px}.auth-card{width:min(440px,100%);background:#fff;border:1px solid #e6eeeb;border-radius:22px;padding:28px;box-shadow:0 15px 50px #254b4415}.auth-card h1{font-size:25px;margin-bottom:8px}.auth-card p{font-size:13px;color:#71817e;line-height:1.5}.auth-card input{width:100%;padding:12px;border:1px solid #dce6e2;border-radius:10px;margin:7px 0 12px}.auth-card button{width:100%;padding:12px;border-radius:10px;background:#168c83;color:white;font-weight:800;margin-top:8px}.auth-card button.secondary{background:#eef6f4;color:#0e6f69}.auth-msg{font-size:12px;color:#a71920;min-height:18px;margin-top:10px}
+</style>
 </head>
 <body>
+<div class="auth-gate" id="authGate"><div class="auth-card"><div class="brand" style="padding:0 0 16px"><div class="logo">一</div><div><b>Yiersan Chinese</b><small>LEARN • PRACTICE • GROW</small></div></div><h1 id="authTitle">Đăng nhập học viên</h1><p>Đăng nhập hoặc tạo tài khoản để lưu hồ sơ và tiến độ học tập.</p><label>Họ tên (chỉ khi đăng ký)</label><input id="authName" autocomplete="name" placeholder="Họ tên học viên"><label>Email</label><input id="authEmail" type="email" autocomplete="email" placeholder="Email"><label>Mật khẩu</label><input id="authPassword" type="password" autocomplete="current-password" placeholder="Tối thiểu 6 ký tự"><button id="authSubmit">Đăng nhập</button><button class="secondary" id="authToggle">Chưa có tài khoản? Đăng ký</button><div class="auth-msg" id="authMsg"></div></div></div>
+
 <div class="app">
 <aside class="sidebar" id="sidebar">
   <div class="brand"><div class="logo">一</div><div><b>Yiersan Chinese</b><small>LEARN • PRACTICE • GROW</small></div></div>
@@ -184,5 +190,20 @@ document.getElementById('roleSelect').onchange=function(){toast('Đã chọn vai
 document.getElementById('levelProgress').innerHTML=levels.map((l,i)=>`<div style="margin:15px 0"><div class="level-foot"><b style="color:var(--ink)">${l[0]}</b><span>${i===0?'18%':'0%'}</span></div><div class="progress"><span style="width:${i===0?18:0}%"></span></div></div>`).join('');
 renderWords();renderLesson();
 </script>
+
+<script>
+const YS_SUPABASE_URL='https://vdrsfjwtnwqwimlsikcc.supabase.co';
+const YS_SUPABASE_KEY='sb_publishable_r5u7jizVQBZ0Zl15Yqauow_50ES7PVq';
+const ysAuthClient=window.supabase.createClient(YS_SUPABASE_URL,YS_SUPABASE_KEY);
+let ysRegisterMode=false;
+const gate=document.getElementById('authGate'),msg=document.getElementById('authMsg');
+function authMode(){ysRegisterMode=!ysRegisterMode;document.getElementById('authTitle').textContent=ysRegisterMode?'Đăng ký tài khoản':'Đăng nhập học viên';document.getElementById('authName').style.display=ysRegisterMode?'block':'none';document.getElementById('authSubmit').textContent=ysRegisterMode?'Tạo tài khoản':'Đăng nhập';document.getElementById('authToggle').textContent=ysRegisterMode?'Đã có tài khoản? Đăng nhập':'Chưa có tài khoản? Đăng ký';msg.textContent=''}
+document.getElementById('authName').style.display='none';document.getElementById('authToggle').onclick=authMode;
+document.getElementById('authSubmit').onclick=async()=>{msg.textContent='Đang xử lý...';let email=document.getElementById('authEmail').value.trim(),password=document.getElementById('authPassword').value,name=document.getElementById('authName').value.trim();if(!email||password.length<6||(ysRegisterMode&&!name)){msg.textContent='Vui lòng nhập đủ thông tin; mật khẩu ít nhất 6 ký tự.';return}try{if(ysRegisterMode){let {data,error}=await ysAuthClient.auth.signUp({email,password,options:{data:{full_name:name}}});if(error)throw error;if(data.user){msg.textContent=data.session?'Tạo tài khoản thành công.':'Đã tạo tài khoản. Nếu cần, hãy xác nhận email rồi đăng nhập.';if(data.session){await ensureYSProfile(data.user,name);gate.style.display='none'}}}else{let {data,error}=await ysAuthClient.auth.signInWithPassword({email,password});if(error)throw error;await ensureYSProfile(data.user,data.user.user_metadata?.full_name||'');gate.style.display='none'}}catch(e){msg.textContent=e.message||'Có lỗi xảy ra'}};
+async function ensureYSProfile(user,name){if(!user)return;let {data,error}=await ysAuthClient.from('profiles').select('*').eq('id',user.id).maybeSingle();if(error)throw error;if(!data){let payload={id:user.id,full_name:name||user.user_metadata?.full_name||user.email,role:'student'};let r=await ysAuthClient.from('profiles').insert(payload);if(r.error)throw r.error}let profile=(await ysAuthClient.from('profiles').select('full_name,student_code,role').eq('id',user.id).maybeSingle()).data;if(profile){let display=profile.full_name||'Học viên';document.querySelector('.user-mini b').textContent=display;document.querySelector('.user-mini small').textContent=profile.student_code||'Tài khoản học viên';document.querySelector('.avatar').textContent=(display.trim().split(/\s+/).slice(-2).join('').slice(0,2)||'YS').toUpperCase()}}
+ysAuthClient.auth.getSession().then(async({data,error})=>{if(error){msg.textContent=error.message;return}if(data.session){try{await ensureYSProfile(data.session.user,data.session.user.user_metadata?.full_name||'');gate.style.display='none'}catch(e){msg.textContent='Không tạo/đọc được hồ sơ: '+e.message}}});
+ysAuthClient.auth.onAuthStateChange(async(event,session)=>{if(event==='SIGNED_OUT')gate.style.display='flex'});
+</script>
+
 </body>
 </html>
